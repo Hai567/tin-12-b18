@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Form</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+
+            form {
+                width: 300px;
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                background-color: #ffffcc;
+            }
+
+            h2 {
+                text-align: center;
+                font-size: 16px;
+            }
+
+            label {
+                display: block;
+                margin-top: 10px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="file"],
+            textarea,
+            select {
+                width: 100%;
+                padding: 5px;
+                margin-top: 5px;
+            }
+
+            input[type="radio"],
+            input[type="checkbox"] {
+                margin-right: 5px;
+            }
+
+            button {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                background-color: #4caf50;
+                color: white;
+                border: none;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+            <h2>
+                ĐĂNG KÍ THÀNH VIÊN CLB NGOẠI KHÓA<br />TRƯỜNG THPT NGUYỄN BỈNH
+                KHIÊM
+            </h2>
+            <label for="name">Họ tên:</label>
+            <input type="text" id="name" name="name" /><br /><br />
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" /><br /><br />
+
+            <label for="dob">Ngày sinh:</label>
+            <input
+                type="text"
+                id="dob"
+                name="dob"
+                placeholder="dd/mm/yyyy"
+            /><br /><br />
+
+            <label for="address">Địa chỉ:</label>
+            <textarea id="address" name="address"></textarea><br /><br />
+
+            <label>Giới tính:</label>
+            <input type="radio" id="male" name="gender" value="male" />
+            <label for="male">Nam</label>
+            <input type="radio" id="female" name="gender" value="female" />
+            <label for="female">Nữ</label><br /><br />
+
+            <label>Sở thích:</label><br />
+            <input type="checkbox" id="reading" name="hobby" value="reading" />
+            <label for="reading">Cờ vua</label><br />
+            <input type="checkbox" id="music" name="hobby" value="music" />
+            <label for="music">Tổ chức điện tử</label><br />
+            <input type="checkbox" id="travel" name="hobby" value="travel" />
+            <label for="travel">Du lịch</label><br />
+            <input type="checkbox" id="sports" name="hobby" value="sports" />
+            <label for="sports">Cầu lông</label><br />
+            <input type="checkbox" id="other" name="hobby" value="other" />
+            <label for="other">Nấu ăn</label><br /><br />
+
+            <label for="file">Hồ sơ đính kèm:</label>
+            <input type="file" id="file" name="file" /><br /><br />
+
+            <label for="club">Đăng kí CLB:</label>
+            <select id="club" name="club">
+                <option value="football">Bóng đá</option></select
+            ><br /><br />
+
+            <button type="submit">Đăng kí</button>
+        </form>
+    </body>
+</html>
