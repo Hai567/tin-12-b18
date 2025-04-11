@@ -3,111 +3,350 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Form</title>
+        <title>Đơn đăng kí</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <style>
             body {
                 font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
             }
 
             form {
-                width: 300px;
-                margin: 0 auto;
-                padding: 20px;
+                width: 800px;
+                margin: 20px auto;
+                padding: 30px;
                 border: 1px solid #ccc;
+                border-radius: 8px;
                 background-color: #ffffcc;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             }
 
             h2 {
                 text-align: center;
-                font-size: 16px;
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
             }
 
             label {
                 display: block;
-                margin-top: 10px;
+                margin-bottom: 5px;
+                font-weight: bold;
             }
 
             input[type="text"],
             input[type="email"],
+            input[type="date"],
             input[type="file"],
             textarea,
             select {
                 width: 100%;
-                padding: 5px;
+                padding: 8px;
                 margin-top: 5px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
             }
 
             input[type="radio"],
             input[type="checkbox"] {
-                margin-right: 5px;
+                margin-right: 8px;
+                vertical-align: middle;
+            }
+
+            .checkbox-group,
+            .radio-group {
+                display: flex;
+                align-items: center;
+                margin-bottom: 5px;
+            }
+
+            .checkbox-group label,
+            .radio-group label {
+                display: inline;
+                margin-bottom: 0;
+                font-weight: normal;
+                padding-top: 1px;
+            }
+
+            .btn-container {
+                display: flex;
+                gap: 10px;
+                margin-top: 20px;
             }
 
             button {
-                display: block;
-                width: 100%;
-                padding: 10px;
-                background-color: #4caf50;
-                color: white;
+                flex: 1;
+                padding: 12px;
+                border-radius: 4px;
                 border: none;
-                margin-top: 10px;
+                color: white;
                 cursor: pointer;
+                font-weight: bold;
             }
 
-            button:hover {
+            button[type="submit"] {
+                background-color: #4caf50;
+            }
+
+            button[type="submit"]:hover {
                 background-color: #45a049;
+            }
+
+            button[type="reset"] {
+                background-color: #f44336;
+            }
+
+            button[type="reset"]:hover {
+                background-color: #d32f2f;
+            }
+
+            .error {
+                color: red;
+                font-size: 12px;
+                margin-top: 5px;
             }
         </style>
     </head>
     <body>
-        <form>
+        <form
+            id="registrationForm"
+            action="submit.php"
+            method="post"
+            enctype="multipart/form-data"
+        >
             <h2>
-                ĐĂNG KÍ THÀNH VIÊN CLB NGOẠI KHÓA<br />TRƯỜNG THPT NGUYỄN BỈNH
-                KHIÊM
+                ĐĂNG KÍ THÀNH VIÊN CLB NGOẠI KHÓA<br />TRƯỜNG THPT Quang Trung -
+                Ha Dong
             </h2>
-            <label for="name">Họ tên:</label>
-            <input type="text" id="name" name="name" /><br /><br />
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" /><br /><br />
+            <div class="form-group">
+                <label for="name">Họ tên:</label>
+                <input type="text" id="name" name="name" required />
+                <span class="error" id="nameError"></span>
+            </div>
 
-            <label for="dob">Ngày sinh:</label>
-            <input
-                type="text"
-                id="dob"
-                name="dob"
-                placeholder="dd/mm/yyyy"
-            /><br /><br />
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+                <span class="error" id="emailError"></span>
+            </div>
 
-            <label for="address">Địa chỉ:</label>
-            <textarea id="address" name="address"></textarea><br /><br />
+            <div class="form-group">
+                <label for="dob">Ngày sinh:</label>
+                <input type="date" id="dob" name="dob" required />
+                <span class="error" id="dobError"></span>
+            </div>
 
-            <label>Giới tính:</label>
-            <input type="radio" id="male" name="gender" value="male" />
-            <label for="male">Nam</label>
-            <input type="radio" id="female" name="gender" value="female" />
-            <label for="female">Nữ</label><br /><br />
+            <div class="form-group">
+                <label for="address">Địa chỉ:</label>
+                <textarea id="address" name="address" rows="3"></textarea>
+            </div>
 
-            <label>Sở thích:</label><br />
-            <input type="checkbox" id="reading" name="hobby" value="reading" />
-            <label for="reading">Cờ vua</label><br />
-            <input type="checkbox" id="music" name="hobby" value="music" />
-            <label for="music">Tổ chức điện tử</label><br />
-            <input type="checkbox" id="travel" name="hobby" value="travel" />
-            <label for="travel">Du lịch</label><br />
-            <input type="checkbox" id="sports" name="hobby" value="sports" />
-            <label for="sports">Cầu lông</label><br />
-            <input type="checkbox" id="other" name="hobby" value="other" />
-            <label for="other">Nấu ăn</label><br /><br />
+            <div class="form-group">
+                <span>Giới tính:</span>
+                <div class="radio-group">
+                    <input
+                        type="radio"
+                        id="male"
+                        name="gender"
+                        value="male"
+                        required
+                    />
+                    <label for="male">Nam</label>
+                </div>
+                <div class="radio-group">
+                    <input
+                        type="radio"
+                        id="female"
+                        name="gender"
+                        value="female"
+                    />
+                    <label for="female">Nữ</label>
+                </div>
+                <span class="error" id="genderError"></span>
+            </div>
 
-            <label for="file">Hồ sơ đính kèm:</label>
-            <input type="file" id="file" name="file" /><br /><br />
+            <div class="form-group">
+                <label>Sở thích:</label>
+                <div class="checkbox-group">
+                    <input
+                        type="checkbox"
+                        id="reading"
+                        name="hobby"
+                        value="reading"
+                    />
+                    <label for="reading">Cờ vua</label>
+                </div>
+                <div class="checkbox-group">
+                    <input
+                        type="checkbox"
+                        id="music"
+                        name="hobby"
+                        value="music"
+                    />
+                    <label for="music">Tổ chức điện tử</label>
+                </div>
+                <div class="checkbox-group">
+                    <input
+                        type="checkbox"
+                        id="travel"
+                        name="hobby"
+                        value="travel"
+                    />
+                    <label for="travel">Du lịch</label>
+                </div>
+                <div class="checkbox-group">
+                    <input
+                        type="checkbox"
+                        id="sports"
+                        name="hobby"
+                        value="sports"
+                    />
+                    <label for="sports">Cầu lông</label>
+                </div>
+                <div class="checkbox-group">
+                    <input
+                        type="checkbox"
+                        id="other"
+                        name="hobby"
+                        value="other"
+                    />
+                    <label for="other">Nấu ăn</label>
+                </div>
+            </div>
 
-            <label for="club">Đăng kí CLB:</label>
-            <select id="club" name="club">
-                <option value="football">Bóng đá</option></select
-            ><br /><br />
+            <div class="form-group">
+                <label for="file">Hồ sơ đính kèm:</label>
+                <input type="file" id="file" name="file" />
+            </div>
 
-            <button type="submit">Đăng kí</button>
+            <div class="form-group">
+                <label for="club">Đăng kí CLB:</label>
+                <select id="club" name="club" required>
+                    <option value="">-- Chọn CLB --</option>
+                    <option value="football">Bóng đá</option>
+                    <option value="basketball">Bóng rổ</option>
+                    <option value="badminton">Cầu lông</option>
+                </select>
+                <span class="error" id="clubError"></span>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit">Đăng kí</button>
+                <button type="reset">Xóa form</button>
+            </div>
         </form>
     </body>
+    <footer class="bg-gray-200 p-4 mt-4 flex justify-center w-full">
+        <div class="gap-10 justify-between max-w-[70%] w-full flex">
+            <div>
+                <h3 class="font-bold">Liên hệ:</h3>
+                <p>Ho Duc Hai - 12a4</p>
+                <ul class="list-disc pl-5">
+                    <li>Điện thoại: 0123456789</li>
+                    <li>
+                        Website:
+                        <a href="#" class="text-blue-500 underline"
+                            >THPT QT - HD</a
+                        >
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold">Xem chi tiết:</h3>
+                <ul class="list-disc pl-5">
+                    <li>
+                        <a href="./thethao.html" class="text-blue-500 underline"
+                            >Trang web CLB Thể thao</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="./nghethuat.html"
+                            class="text-blue-500 underline"
+                            >Trang web CLB Nghệ thuật</a
+                        >
+                    </li>
+                    <li>
+                        <a href="./dangki.html" class="text-blue-500 underline"
+                            >Đăng kí tham gia CLB</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document
+            .getElementById("registrationForm")
+            .addEventListener("submit", function (e) {
+                let isValid = true
+
+                // Validate name
+                const name = document.getElementById("name").value
+                if (name.trim() === "") {
+                    document.getElementById("nameError").textContent =
+                        "Vui lòng nhập họ tên"
+                    isValid = false
+                } else {
+                    document.getElementById("nameError").textContent = ""
+                }
+
+                // Validate email
+                const email = document.getElementById("email").value
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                if (!emailRegex.test(email)) {
+                    document.getElementById("emailError").textContent =
+                        "Email không hợp lệ"
+                    isValid = false
+                } else {
+                    document.getElementById("emailError").textContent = ""
+                }
+
+                // Validate date of birth
+                const dob = document.getElementById("dob").value
+                if (dob === "") {
+                    document.getElementById("dobError").textContent =
+                        "Vui lòng chọn ngày sinh"
+                    isValid = false
+                } else {
+                    document.getElementById("dobError").textContent = ""
+                }
+
+                // Validate gender
+                const gender = document.querySelector(
+                    'input[name="gender"]:checked'
+                )
+                if (!gender) {
+                    document.getElementById("genderError").textContent =
+                        "Vui lòng chọn giới tính"
+                    isValid = false
+                } else {
+                    document.getElementById("genderError").textContent = ""
+                }
+
+                // Validate club
+                const club = document.getElementById("club").value
+                if (club === "") {
+                    document.getElementById("clubError").textContent =
+                        "Vui lòng chọn CLB"
+                    isValid = false
+                } else {
+                    document.getElementById("clubError").textContent = ""
+                }
+
+                if (!isValid) {
+                    e.preventDefault()
+                } else {
+                    alert("Đăng kí thành công!")
+                }
+            })
+    </script>
 </html>
