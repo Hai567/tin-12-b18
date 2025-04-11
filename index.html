@@ -3,157 +3,535 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Trang chủ | THPT Quang Trung - Ha Dong</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-        <title>Document</title>
+        <link rel="stylesheet" href="./styles.css" />
+        <script src="./theme-config.js"></script>
+        <style>
+            .hero-bg {
+                background: linear-gradient(
+                        rgba(0, 0, 0, 0.5),
+                        rgba(0, 0, 0, 0.6)
+                    ),
+                    url("https://edusmart.vn/wp-content/uploads/2020/06/TR%C6%AF%E1%BB%9CNG-THPT-QUANG-TRUNG-H%C3%80-%C4%90%C3%94NG-6.jpg")
+                        no-repeat center center;
+                background-size: cover;
+            }
+
+            /* Theme customizer styles */
+            .theme-customizer {
+                position: fixed;
+                right: -250px;
+                top: 100px;
+                width: 250px;
+                background: white;
+                box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                transition: right 0.3s ease;
+                padding: 15px;
+                border-radius: 8px 0 0 8px;
+            }
+
+            .theme-customizer.open {
+                right: 0;
+            }
+
+            .theme-toggle {
+                position: absolute;
+                left: -40px;
+                top: 15px;
+                background: white;
+                border-radius: 8px 0 0 8px;
+                padding: 10px;
+                cursor: pointer;
+                box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .color-input {
+                width: 100%;
+                height: 30px;
+                margin-bottom: 10px;
+            }
+
+            .theme-customizer label {
+                display: block;
+                font-size: 12px;
+                margin-bottom: 2px;
+            }
+        </style>
     </head>
-    <body class="w-full">
-        <div class="hero w-screen h-screen flex justify-center items-center">
-            <h1 class="text-6xl font-bold text-red-200">CLBNK THPT QT-HD</h1>
+    <body class="bg-gray-50 font-sans flex flex-col min-h-screen">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div
+                class="container mx-auto px-4 py-3 flex justify-between items-center"
+            >
+                <a href="./index.html" class="text-xl font-bold"
+                    >THPT Quang Trung - Ha Dong</a
+                >
+                <div class="hidden md:flex space-x-6">
+                    <a href="./index.html" class="nav-link active">Trang chủ</a>
+                    <a href="./thethao.html" class="nav-link">CLB Thể thao</a>
+                    <a href="./nghethuat.html" class="nav-link"
+                        >CLB Nghệ thuật</a
+                    >
+                    <a href="./dangki.html" class="nav-link">Đăng kí</a>
+                </div>
+                <button class="md:hidden text-white focus:outline-none">
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section
+            class="hero-bg h-96 flex items-center justify-center text-white"
+        >
+            <div class="text-center px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    CLB NGOẠI KHÓA THPT QT-HD
+                </h1>
+                <p class="text-xl md:text-2xl mb-8">
+                    Nơi phát triển năng khiếu và tài năng
+                </p>
+                <a
+                    href="./dangki.html"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition duration-200"
+                >
+                    Đăng ký ngay
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-6 text-center">
+                        <div
+                            class="bg-blue-100 w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-8 w-8 text-blue-600"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                                />
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3 text-blue-700">
+                            Năng động
+                        </h2>
+                        <p class="text-gray-600">
+                            Phát triển các kỹ năng xã hội và khả năng làm việc
+                            nhóm thông qua các hoạt động ngoại khóa đa dạng.
+                        </p>
+                    </div>
+
+                    <div class="card p-6 text-center">
+                        <div
+                            class="bg-blue-100 w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-8 w-8 text-blue-600"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                                />
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3 text-blue-700">
+                            Sáng tạo
+                        </h2>
+                        <p class="text-gray-600">
+                            Khơi dậy tiềm năng sáng tạo và phát triển tư duy
+                            thông qua các hoạt động nghệ thuật và khoa học.
+                        </p>
+                    </div>
+
+                    <div class="card p-6 text-center">
+                        <div
+                            class="bg-blue-100 w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-8 w-8 text-blue-600"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                />
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3 text-blue-700">
+                            Kết nối
+                        </h2>
+                        <p class="text-gray-600">
+                            Xây dựng các mối quan hệ bạn bè và trau dồi tinh
+                            thần đồng đội thông qua các hoạt động CLB.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Sections -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center mb-16">
+                    <div class="w-full md:w-1/2 pr-0 md:pr-8 mb-8 md:mb-0">
+                        <h2 class="text-2xl font-bold text-blue-700 mb-4">
+                            Vừa học vừa chơi
+                        </h2>
+                        <p class="text-gray-700 mb-6">
+                            Các câu lạc bộ ngoại khóa tại THPT Quang Trung - Hà
+                            Đông không chỉ là nơi học sinh thể hiện tài năng mà
+                            còn giúp cân bằng giữa việc học tập và giải trí. Các
+                            hoạt động được thiết kế để phát triển kỹ năng mềm,
+                            rèn luyện thể chất và tinh thần đồng đội.
+                        </p>
+                        <a
+                            href="./dangki.html"
+                            class="inline-block bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+                        >
+                            Tham gia ngay
+                        </a>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <img
+                            src="https://r73troypb4obj.vcdn.cloud/website02/uploads/pictures/62834d971a1b8518554ee653/content_danh-gia-truong-thpt-quang-trung-ha-dong-co-tot-khong-2.jpg"
+                            alt="Hoạt động CLB"
+                            class="rounded-lg shadow-md w-full"
+                        />
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col md:flex-row-reverse items-center mb-16"
+                >
+                    <div class="w-full md:w-1/2 pl-0 md:pl-8 mb-8 md:mb-0">
+                        <h2 class="text-2xl font-bold text-blue-700 mb-4">
+                            Phát triển tài năng
+                        </h2>
+                        <p class="text-gray-700 mb-6">
+                            Các CLB của trường luôn tạo môi trường lý tưởng để
+                            học sinh phát triển sở trường và khám phá tiềm năng.
+                            Với sự hướng dẫn của giáo viên giàu kinh nghiệm, học
+                            sinh có cơ hội trau dồi kỹ năng và đạt được những
+                            thành tích xuất sắc trong các cuộc thi cấp quận và
+                            thành phố.
+                        </p>
+                        <a
+                            href="./thethao.html"
+                            class="inline-block bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+                        >
+                            Khám phá thêm
+                        </a>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <img
+                            src="https://r73troypb4obj.vcdn.cloud/website02/uploads/pictures/62834d971a1b8518554ee653/content_danh-gia-truong-thpt-quang-trung-ha-dong-co-tot-khong-2.jpg"
+                            alt="Hoạt động CLB"
+                            class="rounded-lg shadow-md w-full"
+                        />
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/2 pr-0 md:pr-8 mb-8 md:mb-0">
+                        <h2 class="text-2xl font-bold text-blue-700 mb-4">
+                            Kết nối cộng đồng
+                        </h2>
+                        <p class="text-gray-700 mb-6">
+                            Thông qua các hoạt động xã hội và tình nguyện, các
+                            CLB không chỉ mang đến những buổi sinh hoạt bổ ích
+                            mà còn giúp học sinh phát triển tinh thần trách
+                            nhiệm với cộng đồng. Các dự án tình nguyện giúp các
+                            em hiểu hơn về giá trị của sự sẻ chia và kết nối.
+                        </p>
+                        <a
+                            href="./nghethuat.html"
+                            class="inline-block bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+                        >
+                            Tìm hiểu thêm
+                        </a>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <img
+                            src="https://r73troypb4obj.vcdn.cloud/website02/uploads/pictures/62834d971a1b8518554ee653/content_danh-gia-truong-thpt-quang-trung-ha-dong-co-tot-khong-2.jpg"
+                            alt="Hoạt động CLB"
+                            class="rounded-lg shadow-md w-full"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Theme Customizer -->
+        <div class="theme-customizer" id="themeCustomizer">
+            <div class="theme-toggle" id="themeToggle">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                >
+                    <path
+                        d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+                    />
+                    <path
+                        d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"
+                    />
+                </svg>
+            </div>
+            <h3 class="text-lg font-bold mb-3">Theme Colors</h3>
+            <div>
+                <label for="primary-color">Primary Color:</label>
+                <input
+                    type="color"
+                    id="primary-color"
+                    class="color-input"
+                    value="#1e40af"
+                />
+            </div>
+            <div>
+                <label for="accent-color">Accent Color:</label>
+                <input
+                    type="color"
+                    id="accent-color"
+                    class="color-input"
+                    value="#3b82f6"
+                />
+            </div>
+            <div>
+                <label for="success-color">Success Color:</label>
+                <input
+                    type="color"
+                    id="success-color"
+                    class="color-input"
+                    value="#10b981"
+                />
+            </div>
+            <div class="mt-3">
+                <button
+                    id="save-theme"
+                    class="btn-primary text-white py-1 px-3 rounded-md mr-2 text-sm"
+                >
+                    Save
+                </button>
+                <button
+                    id="reset-theme"
+                    class="bg-gray-200 hover:bg-gray-300 text-gray-800 py-1 px-3 rounded-md text-sm"
+                >
+                    Reset
+                </button>
+            </div>
         </div>
-        <div>
-            <div class="grid grid-cols-3 w-full">
-                <div>
-                    <h2 class="text-xl font-semibold w-full pb-2">Nang dong</h2>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Ipsa, numquam perferendis quos a nemo, neque animi
-                        iste soluta doloribus ea voluptate ipsam velit id sunt,
-                        consequatur eos? Cum, eius tempora?
-                    </p>
-                </div>
-                <div>
-                    <h2 class="text-xl font-semibold w-full pb-2">Nang dong</h2>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Ipsa, numquam perferendis quos a nemo, neque animi
-                        iste soluta doloribus ea voluptate ipsam velit id sunt,
-                        consequatur eos? Cum, eius tempora?
-                    </p>
-                </div>
-                <div>
-                    <h2 class="text-xl font-semibold w-full pb-2">Nang dong</h2>
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Ipsa, numquam perferendis quos a nemo, neque animi
-                        iste soluta doloribus ea voluptate ipsam velit id sunt,
-                        consequatur eos? Cum, eius tempora?
-                    </p>
-                </div>
-            </div>
-            <div class="w2 grid-cols-2">
-                <div class="p-10">
+
+        <script>
+            // Theme customizer functionality
+            document.addEventListener("DOMContentLoaded", function () {
+                const themeToggle = document.getElementById("themeToggle")
+                const themeCustomizer =
+                    document.getElementById("themeCustomizer")
+                const primaryColor = document.getElementById("primary-color")
+                const accentColor = document.getElementById("accent-color")
+                const successColor = document.getElementById("success-color")
+                const saveButton = document.getElementById("save-theme")
+                const resetButton = document.getElementById("reset-theme")
+
+                // Toggle theme customizer
+                themeToggle.addEventListener("click", function () {
+                    themeCustomizer.classList.toggle("open")
+                })
+
+                // Update colors in real-time
+                primaryColor.addEventListener("input", updateColors)
+                accentColor.addEventListener("input", updateColors)
+                successColor.addEventListener("input", updateColors)
+
+                // Load colors from themeConfig
+                primaryColor.value = window.themeConfig.primary
+                accentColor.value = window.themeConfig.accent
+                successColor.value = window.themeConfig.success
+
+                // Update theme colors
+                function updateColors() {
+                    window.themeConfig.primary = primaryColor.value
+                    window.themeConfig.primaryHover = adjustColorBrightness(
+                        primaryColor.value,
+                        -20
+                    )
+                    window.themeConfig.primaryLight = adjustColorBrightness(
+                        primaryColor.value,
+                        40
+                    )
+                    window.themeConfig.accent = accentColor.value
+                    window.themeConfig.success = successColor.value
+
+                    applyTheme()
+                }
+
+                // Save theme
+                saveButton.addEventListener("click", function () {
+                    const themeCode = `// Theme color configuration
+const themeConfig = {
+    // Primary colors
+    primary: "${window.themeConfig.primary}",
+    primaryHover: "${window.themeConfig.primaryHover}",
+    primaryLight: "${window.themeConfig.primaryLight}",
+    
+    // Secondary colors
+    secondary: "#f9fafb",
+    secondaryDark: "#e5e7eb",
+    
+    // Text colors
+    textDark: "#1f2937",
+    textMedium: "#6b7280",
+    textLight: "#ffffff",
+    
+    // Accent colors
+    accent: "${window.themeConfig.accent}",
+    success: "${window.themeConfig.success}",
+    error: "${window.themeConfig.error}",
+}`
+
+                    alert(
+                        "Copy this theme configuration to your theme-config.js file:\n\n" +
+                            themeCode
+                    )
+                })
+
+                // Reset theme
+                resetButton.addEventListener("click", function () {
+                    primaryColor.value = "#1e40af"
+                    accentColor.value = "#3b82f6"
+                    successColor.value = "#10b981"
+                    updateColors()
+                })
+
+                // Helper function to adjust color brightness
+                function adjustColorBrightness(hex, percent) {
+                    hex = hex.replace(/^\s*#|\s*$/g, "")
+
+                    // convert 3 char hex to 6 char hex
+                    if (hex.length == 3) {
+                        hex = hex.replace(/(.)/g, "$1$1")
+                    }
+
+                    var r = parseInt(hex.substr(0, 2), 16)
+                    var g = parseInt(hex.substr(2, 2), 16)
+                    var b = parseInt(hex.substr(4, 2), 16)
+
+                    r = Math.max(0, Math.min(255, r + percent))
+                    g = Math.max(0, Math.min(255, g + percent))
+                    b = Math.max(0, Math.min(255, b + percent))
+
+                    var rr =
+                        r.toString(16).length == 1
+                            ? "0" + r.toString(16)
+                            : r.toString(16)
+                    var gg =
+                        g.toString(16).length == 1
+                            ? "0" + g.toString(16)
+                            : g.toString(16)
+                    var bb =
+                        b.toString(16).length == 1
+                            ? "0" + b.toString(16)
+                            : b.toString(16)
+
+                    return "#" + rr + gg + bb
+                }
+            })
+        </script>
+
+        <!-- Footer -->
+        <footer class="footer py-6">
+            <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8">
+                <div class="flex justify-center">
                     <div>
-                        <h1 class="w-full font-bold grow">Vua hoc vua choi</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Praesentium atque doloremque numquam quis
-                            quaerat ullam, molestiae ducimus rerum sunt. Quo
-                            impedit ipsam cupiditate quam quia porro, magnam id
-                            iure neque.
-                        </p>
+                        <h3 class="text-lg font-bold mb-3">Liên hệ:</h3>
+                        <p>Ho Duc Hai - 12a4</p>
+                        <ul class="list-disc pl-5 mt-2">
+                            <li>Điện thoại: 0123456789</li>
+                            <li>
+                                Website:
+                                <a
+                                    href="#"
+                                    class="hover:text-blue-200 transition duration-200"
+                                    >THPT QT - HD</a
+                                >
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <img
-                    src="https://r73troypb4obj.vcdn.cloud/website02/uploads/pictures/62834d971a1b8518554ee653/content_danh-gia-truong-thpt-quang-trung-ha-dong-co-tot-khong-2.jpg"
-                    alt=""
-                />
-            </div>
-            <div class="w2 grid-cols-2">
-                <img
-                    src="https://r73troypb4obj.vcdn.cloud/website02/uploads/pictures/62834d971a1b8518554ee653/content_danh-gia-truong-thpt-quang-trung-ha-dong-co-tot-khong-2.jpg"
-                    alt=""
-                />
-                <div class="p-10">
+
+                <div class="flex justify-center">
                     <div>
-                        <h1 class="w-full font-bold grow">Vua hoc vua choi</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Praesentium atque doloremque numquam quis
-                            quaerat ullam, molestiae ducimus rerum sunt. Quo
-                            impedit ipsam cupiditate quam quia porro, magnam id
-                            iure neque.
-                        </p>
+                        <h3 class="text-lg font-bold mb-3">Xem chi tiết:</h3>
+                        <ul class="list-disc pl-5 mt-2">
+                            <li>
+                                <a
+                                    href="./thethao.html"
+                                    class="hover:text-blue-200 transition duration-200"
+                                    >CLB Thể thao</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="./nghethuat.html"
+                                    class="hover:text-blue-200 transition duration-200"
+                                    >CLB Nghệ thuật</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="./dangki.html"
+                                    class="hover:text-blue-200 transition duration-200"
+                                    >Đăng kí tham gia CLB</a
+                                >
+                            </li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-            <div class="w2 grid-cols-2">
-                <div class="p-10">
-                    <div>
-                        <h1 class="w-full font-bold grow">Vua hoc vua choi</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Praesentium atque doloremque numquam quis
-                            quaerat ullam, molestiae ducimus rerum sunt. Quo
-                            impedit ipsam cupiditate quam quia porro, magnam id
-                            iure neque.
-                        </p>
-                    </div>
-                </div>
-                <img
-                    src="https://r73troypb4obj.vcdn.cloud/website02/uploads/pictures/62834d971a1b8518554ee653/content_danh-gia-truong-thpt-quang-trung-ha-dong-co-tot-khong-2.jpg"
-                    alt=""
-                />
-            </div>
-        </div>
-        <footer class="bg-gray-200 p-4 mt-4 w-max-lg">
-            <div class="flex gap-10 justify-center">
-                <div>
-                    <h3 class="font-bold">Liên hệ:</h3>
-                    <p>Ho Duc Hai - 12a4</p>
-                    <ul class="list-disc pl-5">
-                        <li>Điện thoại: 0123456789</li>
-                        <li>
-                            Website:
-                            <a href="#" class="text-blue-500 underline"
-                                >THPT QT - HD</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-bold">Xem chi tiết:</h3>
-                    <ul class="list-disc pl-5">
-                        <li>
-                            <a
-                                href="./thethao.html"
-                                class="text-blue-500 underline"
-                                >Trang web CLB Thể thao</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="./nghethuat.html"
-                                class="text-blue-500 underline"
-                                >Trang web CLB Nghệ thuật</a
-                            >
-                        </li>
-                    </ul>
                 </div>
             </div>
         </footer>
     </body>
 </html>
-
-<style>
-    .hero {
-        background: url("https://edusmart.vn/wp-content/uploads/2020/06/TR%C6%AF%E1%BB%9CNG-THPT-QUANG-TRUNG-H%C3%80-%C4%90%C3%94NG-6.jpg")
-            no-repeat center center;
-        background-size: cover;
-    }
-    .grid div {
-        text-align: center;
-        padding: 1em;
-    }
-    .w2 {
-        display: grid;
-    }
-    .w2 div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    .w2 img {
-        width: 100%;
-    }
-</style>
