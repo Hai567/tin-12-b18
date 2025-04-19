@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Đăng kí CLB | THPT Quang Trung - Ha Dong</title>
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Playfair+Display:wght@500;600;700&display=swap"
             rel="stylesheet"
         />
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -13,9 +13,9 @@
         <script src="./theme-config.js"></script>
         <style>
             body {
-                font-family: "Inter", sans-serif;
-                background-color: #f9fafb;
-                color: #1f2937;
+                font-family: "Poppins", sans-serif;
+                background-color: #f8f5f2;
+                color: #232323;
                 margin: 0;
                 padding: 0;
                 min-height: 100vh;
@@ -23,86 +23,155 @@
                 flex-direction: column;
             }
 
+            h1,
+            h2,
+            h3,
+            .nav-link,
+            .font-bold {
+                font-family: "Playfair Display", serif;
+            }
+
             /* Additional form-specific styles */
             .form-input {
                 width: 100%;
                 padding: 0.75rem;
-                border: 1px solid var(--color-secondary-dark);
-                border-radius: 0.375rem;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 2px;
+                transition: all 0.3s ease;
             }
 
             .form-input:focus {
                 outline: none;
-                border-color: var(--color-accent);
-                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+                border-color: #f45d48;
+                box-shadow: 0 0 0 3px rgba(244, 93, 72, 0.2);
             }
 
             .btn-submit {
-                background-color: var(--color-success);
+                background-color: #f45d48;
+                transition: all 0.3s ease;
             }
 
             .btn-submit:hover {
-                opacity: 0.9;
+                background-color: #e05142;
+                box-shadow: 0 10px 15px rgba(244, 93, 72, 0.2);
             }
 
-            /* Theme customizer styles */
-            .theme-customizer {
-                position: fixed;
-                right: -250px;
-                top: 100px;
-                width: 250px;
-                background: white;
-                box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-                z-index: 1000;
-                transition: right 0.3s ease;
-                padding: 15px;
-                border-radius: 8px 0 0 8px;
+            .navbar {
+                background-color: #232323;
+                position: relative;
+                width: 100%;
+                z-index: 100;
+                padding: 1rem 0;
             }
 
-            .theme-customizer.open {
-                right: 0;
+            .nav-link {
+                font-weight: 400;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                font-size: 0.85rem;
+                position: relative;
+                padding: 0.5rem 0;
+            }
+
+            .nav-link:before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                bottom: 0;
+                left: 0;
+                background-color: #f45d48;
+                visibility: hidden;
+                transform: scaleX(0);
+                transition: all 0.3s ease-in-out;
+            }
+
+            .nav-link:hover:before,
+            .nav-link.active:before {
+                visibility: visible;
+                transform: scaleX(1);
+            }
+
+            .footer {
+                background-color: #232323;
+                color: #f8f5f2;
+                padding: 5rem 0 2rem;
+            }
+
+            .divider {
+                height: 1px;
+                background: rgba(0, 0, 0, 0.1);
+                margin: 1.5rem 0;
             }
 
             .theme-toggle {
-                position: absolute;
-                left: -40px;
-                top: 15px;
-                background: white;
-                border-radius: 8px 0 0 8px;
-                padding: 10px;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: #f45d48;
+                color: white;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 cursor: pointer;
-                box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+                z-index: 1000;
+                transition: all 0.3s ease;
             }
 
-            .color-input {
-                width: 100%;
-                height: 30px;
-                margin-bottom: 10px;
+            .theme-toggle:hover {
+                background: #078080;
+                transform: rotate(90deg);
             }
 
-            .theme-customizer label {
-                display: block;
-                font-size: 12px;
-                margin-bottom: 2px;
+            .theme-panel {
+                position: fixed;
+                bottom: 80px;
+                right: 20px;
+                background: white;
+                border-radius: 5px;
+                padding: 1.5rem;
+                box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+                z-index: 999;
+                width: 280px;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(20px);
+                transition: all 0.3s ease;
+            }
+
+            .theme-panel.open {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
             }
         </style>
     </head>
     <body>
         <!-- Navigation -->
-        <nav class="navbar">
+        <nav class="navbar" id="main-nav">
             <div
-                class="container mx-auto px-4 py-3 flex justify-between items-center"
+                class="container mx-auto px-8 flex justify-between items-center"
             >
-                <a href="./index.html" class="text-xl font-bold"
-                    >THPT Quang Trung - Ha Dong</a
+                <a href="./index.html" class="text-2xl font-bold text-white"
+                    >THPT Quang Trung</a
                 >
-                <div class="hidden md:flex space-x-6">
-                    <a href="./index.html" class="nav-link">Trang chủ</a>
-                    <a href="./thethao.html" class="nav-link">CLB Thể thao</a>
-                    <a href="./nghethuat.html" class="nav-link"
+                <div class="hidden md:flex space-x-8">
+                    <a href="./index.html" class="nav-link text-white"
+                        >Trang chủ</a
+                    >
+                    <a href="./thethao.html" class="nav-link text-white"
+                        >CLB Thể thao</a
+                    >
+                    <a href="./nghethuat.html" class="nav-link text-white"
                         >CLB Nghệ thuật</a
                     >
-                    <a href="./dangki.html" class="nav-link active">Đăng kí</a>
+                    <a href="./dangki.html" class="nav-link active text-white"
+                        >Đăng kí</a
+                    >
                 </div>
                 <button class="md:hidden text-white focus:outline-none">
                     <svg
@@ -123,20 +192,25 @@
             </div>
         </nav>
 
-        <main class="flex-grow container mx-auto px-4 py-8">
+        <main class="flex-grow container mx-auto px-8 py-16">
             <form
                 id="registrationForm"
                 action="submit.php"
                 method="post"
                 enctype="multipart/form-data"
-                class="bg-white shadow-md rounded-lg p-6 max-w-2xl mx-auto"
+                class="bg-white shadow-md p-8 max-w-2xl mx-auto"
             >
-                <h2 class="text-2xl font-bold text-center text-blue-700 mb-6">
-                    ĐĂNG KÍ THÀNH VIÊN CLB NGOẠI KHÓA<br />TRƯỜNG THPT Quang
-                    Trung - Ha Dong
+                <h2 class="text-3xl font-bold text-center mb-10 relative">
+                    ĐĂNG KÍ THÀNH VIÊN CLB NGOẠI KHÓA
+                    <span class="block text-xl mt-2 text-gray-600"
+                        >TRƯỜNG THPT Quang Trung - Ha Dong</span
+                    >
+                    <span
+                        class="absolute h-1 w-24 bg-[#f45d48] bottom-0 left-1/2 transform -translate-x-1/2 mt-4"
+                    ></span>
                 </h2>
 
-                <div class="mb-4">
+                <div class="mb-6">
                     <label
                         for="name"
                         class="block text-gray-700 font-medium mb-2"
@@ -150,10 +224,10 @@
                         placeholder="Nhập họ và tên"
                         class="form-input"
                     />
-                    <span class="text-red-500 text-sm" id="nameError"></span>
+                    <span class="text-[#f45d48] text-sm" id="nameError"></span>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-6">
                     <label
                         for="email"
                         class="block text-gray-700 font-medium mb-2"
@@ -167,10 +241,10 @@
                         placeholder="email@example.com"
                         class="form-input"
                     />
-                    <span class="text-red-500 text-sm" id="emailError"></span>
+                    <span class="text-[#f45d48] text-sm" id="emailError"></span>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-6">
                     <label
                         for="dob"
                         class="block text-gray-700 font-medium mb-2"
@@ -183,10 +257,10 @@
                         required
                         class="form-input"
                     />
-                    <span class="text-red-500 text-sm" id="dobError"></span>
+                    <span class="text-[#f45d48] text-sm" id="dobError"></span>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-6">
                     <label
                         for="address"
                         class="block text-gray-700 font-medium mb-2"
@@ -201,7 +275,7 @@
                     ></textarea>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-6">
                     <span class="block text-gray-700 font-medium mb-2"
                         >Giới tính:</span
                     >
@@ -226,10 +300,13 @@
                         />
                         <label for="female" class="text-gray-700">Nữ</label>
                     </div>
-                    <span class="text-red-500 text-sm" id="genderError"></span>
+                    <span
+                        class="text-[#f45d48] text-sm"
+                        id="genderError"
+                    ></span>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-6">
                     <span class="block text-gray-700 font-medium mb-2"
                         >Sở thích:</span
                     >
@@ -293,7 +370,7 @@
                     </div>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-6">
                     <label
                         for="file"
                         class="block text-gray-700 font-medium mb-2"
@@ -307,7 +384,7 @@
                     />
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-6">
                     <label
                         for="club"
                         class="block text-gray-700 font-medium mb-2"
@@ -319,19 +396,19 @@
                         <option value="basketball">Bóng rổ</option>
                         <option value="badminton">Cầu lông</option>
                     </select>
-                    <span class="text-red-500 text-sm" id="clubError"></span>
+                    <span class="text-[#f45d48] text-sm" id="clubError"></span>
                 </div>
 
-                <div class="flex flex-col md:flex-row gap-4 mt-6">
+                <div class="flex flex-col md:flex-row gap-4 mt-8">
                     <button
                         type="submit"
-                        class="btn-submit text-white py-2 px-4 rounded-md transition duration-200 flex-1"
+                        class="btn-submit text-white py-3 px-6 transition duration-200 flex-1 border-0"
                     >
                         Đăng kí
                     </button>
                     <button
                         type="reset"
-                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-md transition duration-200 flex-1"
+                        class="bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-6 transition duration-200 flex-1"
                     >
                         Xóa form
                     </button>
@@ -339,62 +416,63 @@
             </form>
         </main>
 
-        <!-- Theme Customizer -->
-        <div class="theme-customizer" id="themeCustomizer">
-            <div class="theme-toggle" id="themeToggle">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                >
-                    <path
-                        d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
-                    />
-                    <path
-                        d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"
-                    />
-                </svg>
-            </div>
-            <h3 class="text-lg font-bold mb-3">Theme Colors</h3>
+        <!-- Theme toggle -->
+        <div class="theme-toggle" id="themeToggle">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+            >
+                <path
+                    d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+                />
+                <path
+                    d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"
+                />
+            </svg>
+        </div>
+
+        <div class="theme-panel" id="themePanel">
+            <h3 class="text-lg font-bold mb-4">Theme Settings</h3>
             <div>
-                <label for="primary-color">Primary Color:</label>
+                <label
+                    for="primary-color"
+                    class="block text-sm font-medium mb-1"
+                    >Primary Color:</label
+                >
                 <input
                     type="color"
                     id="primary-color"
-                    class="color-input"
-                    value="#1e40af"
+                    class="w-full h-10 rounded"
+                    value="#f45d48"
                 />
             </div>
-            <div>
-                <label for="accent-color">Accent Color:</label>
+            <div class="mt-4">
+                <label
+                    for="secondary-color"
+                    class="block text-sm font-medium mb-1"
+                    >Secondary Color:</label
+                >
                 <input
                     type="color"
-                    id="accent-color"
-                    class="color-input"
-                    value="#3b82f6"
+                    id="secondary-color"
+                    class="w-full h-10 rounded"
+                    value="#078080"
                 />
             </div>
-            <div>
-                <label for="success-color">Success Color:</label>
-                <input
-                    type="color"
-                    id="success-color"
-                    class="color-input"
-                    value="#10b981"
-                />
-            </div>
-            <div class="mt-3">
+            <div class="divider"></div>
+            <div class="flex justify-between">
                 <button
                     id="save-theme"
-                    class="btn-primary text-white py-1 px-3 rounded-md mr-2 text-sm"
+                    class="bg-gray-800 text-white px-4 py-2 rounded text-sm"
                 >
-                    Save
+                    Apply
                 </button>
                 <button
                     id="reset-theme"
-                    class="bg-gray-200 hover:bg-gray-300 text-gray-800 py-1 px-3 rounded-md text-sm"
+                    class="bg-gray-200 text-gray-800 px-4 py-2 rounded text-sm"
                 >
                     Reset
                 </button>
@@ -402,53 +480,66 @@
         </div>
 
         <!-- Footer -->
-        <footer class="footer py-6">
-            <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8">
-                <div class="flex justify-center">
+        <footer class="footer">
+            <div class="container mx-auto px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                     <div>
-                        <h3 class="text-lg font-bold mb-3">Liên hệ:</h3>
-                        <p>Ho Duc Hai - 12a4</p>
-                        <ul class="list-disc pl-5 mt-2">
-                            <li>Điện thoại: 0123456789</li>
+                        <h3 class="text-2xl font-bold mb-6">
+                            THPT Quang Trung
+                        </h3>
+                        <p class="mb-4 opacity-75">
+                            Nơi phát triển tài năng và kỹ năng sống cho học sinh
+                        </p>
+                        <p class="opacity-75">Ho Duc Hai - 12a4</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-6">Liên Hệ</h3>
+                        <ul class="space-y-3 opacity-75">
+                            <li class="flex items-center">
+                                <span class="mr-3">📱</span> 0123456789
+                            </li>
+                            <li class="flex items-center">
+                                <span class="mr-3">🌐</span> THPT QT - HD
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-6">Khám Phá</h3>
+                        <ul class="space-y-3">
                             <li>
-                                Website:
                                 <a
-                                    href="#"
-                                    class="hover:text-blue-200 transition duration-200"
-                                    >THPT QT - HD</a
+                                    href="./thethao.html"
+                                    class="opacity-75 hover:opacity-100 transition duration-300"
                                 >
+                                    CLB Thể thao
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="./nghethuat.html"
+                                    class="opacity-75 hover:opacity-100 transition duration-300"
+                                >
+                                    CLB Nghệ thuật
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="./dangki.html"
+                                    class="opacity-75 hover:opacity-100 transition duration-300"
+                                >
+                                    Đăng kí tham gia CLB
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="flex justify-center">
-                    <div>
-                        <h3 class="text-lg font-bold mb-3">Xem chi tiết:</h3>
-                        <ul class="list-disc pl-5 mt-2">
-                            <li>
-                                <a
-                                    href="./thethao.html"
-                                    class="hover:text-blue-200 transition duration-200"
-                                    >CLB Thể thao</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="./nghethuat.html"
-                                    class="hover:text-blue-200 transition duration-200"
-                                    >CLB Nghệ thuật</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="./dangki.html"
-                                    class="hover:text-blue-200 transition duration-200"
-                                    >Đăng kí tham gia CLB</a
-                                >
-                            </li>
-                        </ul>
-                    </div>
+                <div class="divider mt-12 opacity-25"></div>
+
+                <div class="text-center pt-6 opacity-50 text-sm">
+                    <p>© 2024 Ho Duc Hai. All rights reserved.</p>
                 </div>
             </div>
         </footer>
@@ -519,119 +610,46 @@
                     }
                 })
 
-            // Theme customizer functionality
+            // Theme toggle
             document.addEventListener("DOMContentLoaded", function () {
                 const themeToggle = document.getElementById("themeToggle")
-                const themeCustomizer =
-                    document.getElementById("themeCustomizer")
+                const themePanel = document.getElementById("themePanel")
                 const primaryColor = document.getElementById("primary-color")
-                const accentColor = document.getElementById("accent-color")
-                const successColor = document.getElementById("success-color")
+                const secondaryColor =
+                    document.getElementById("secondary-color")
                 const saveButton = document.getElementById("save-theme")
                 const resetButton = document.getElementById("reset-theme")
 
-                // Toggle theme customizer
                 themeToggle.addEventListener("click", function () {
-                    themeCustomizer.classList.toggle("open")
+                    themePanel.classList.toggle("open")
                 })
 
-                // Update colors in real-time
-                primaryColor.addEventListener("input", updateColors)
-                accentColor.addEventListener("input", updateColors)
-                successColor.addEventListener("input", updateColors)
-
-                // Load colors from themeConfig
-                primaryColor.value = window.themeConfig.primary
-                accentColor.value = window.themeConfig.accent
-                successColor.value = window.themeConfig.success
-
-                // Update theme colors
-                function updateColors() {
-                    window.themeConfig.primary = primaryColor.value
-                    window.themeConfig.primaryHover = adjustColorBrightness(
-                        primaryColor.value,
-                        -20
-                    )
-                    window.themeConfig.primaryLight = adjustColorBrightness(
-                        primaryColor.value,
-                        40
-                    )
-                    window.themeConfig.accent = accentColor.value
-                    window.themeConfig.success = successColor.value
-
-                    applyTheme()
-                }
-
-                // Save theme
                 saveButton.addEventListener("click", function () {
-                    const themeCode = `// Theme color configuration
-const themeConfig = {
-    // Primary colors
-    primary: "${window.themeConfig.primary}",
-    primaryHover: "${window.themeConfig.primaryHover}",
-    primaryLight: "${window.themeConfig.primaryLight}",
-    
-    // Secondary colors
-    secondary: "#f9fafb",
-    secondaryDark: "#e5e7eb",
-    
-    // Text colors
-    textDark: "#1f2937",
-    textMedium: "#6b7280",
-    textLight: "#ffffff",
-    
-    // Accent colors
-    accent: "${window.themeConfig.accent}",
-    success: "${window.themeConfig.success}",
-    error: "${window.themeConfig.error}",
-}`
-
-                    alert(
-                        "Copy this theme configuration to your theme-config.js file:\n\n" +
-                            themeCode
+                    document.documentElement.style.setProperty(
+                        "--primary-color",
+                        primaryColor.value
                     )
+                    document.documentElement.style.setProperty(
+                        "--secondary-color",
+                        secondaryColor.value
+                    )
+
+                    // Update button and theme toggle colors
+                    document
+                        .querySelectorAll(".btn-submit, .theme-toggle")
+                        .forEach((el) => {
+                            el.style.backgroundColor = primaryColor.value
+                        })
+
+                    // Close panel
+                    themePanel.classList.remove("open")
                 })
 
-                // Reset theme
                 resetButton.addEventListener("click", function () {
-                    primaryColor.value = "#1e40af"
-                    accentColor.value = "#3b82f6"
-                    successColor.value = "#10b981"
-                    updateColors()
+                    primaryColor.value = "#f45d48"
+                    secondaryColor.value = "#078080"
+                    saveButton.click()
                 })
-
-                // Helper function to adjust color brightness
-                function adjustColorBrightness(hex, percent) {
-                    hex = hex.replace(/^\s*#|\s*$/g, "")
-
-                    // convert 3 char hex to 6 char hex
-                    if (hex.length == 3) {
-                        hex = hex.replace(/(.)/g, "$1$1")
-                    }
-
-                    var r = parseInt(hex.substr(0, 2), 16)
-                    var g = parseInt(hex.substr(2, 2), 16)
-                    var b = parseInt(hex.substr(4, 2), 16)
-
-                    r = Math.max(0, Math.min(255, r + percent))
-                    g = Math.max(0, Math.min(255, g + percent))
-                    b = Math.max(0, Math.min(255, b + percent))
-
-                    var rr =
-                        r.toString(16).length == 1
-                            ? "0" + r.toString(16)
-                            : r.toString(16)
-                    var gg =
-                        g.toString(16).length == 1
-                            ? "0" + g.toString(16)
-                            : g.toString(16)
-                    var bb =
-                        b.toString(16).length == 1
-                            ? "0" + b.toString(16)
-                            : b.toString(16)
-
-                    return "#" + rr + gg + bb
-                }
             })
         </script>
     </body>
